@@ -1,0 +1,121 @@
+<div
+  class="w-[300px] mx-auto rounded-20 p-[20px] mt-40 shadow-md"
+>
+  <div [style]="{ display: currentStepIndex === 0 ? 'block' : 'none' }">
+    <mat-form-field class="mt-6 w-full">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        placeholder="First Name"
+        required
+        [value]="fields.first_name.value"
+        (input)="onTextChange('first_name', $event)"
+        (focusout)="fields.first_name.isTouched = true"
+      />
+    </mat-form-field>
+    <mat-error *ngFor="let error of fields.first_name.isTouched ? fields.first_name.errors : []">
+      {{ error }}
+    </mat-error>
+
+    <br />
+    <mat-form-field class="mt-6 w-full">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        placeholder="Last name"
+        required
+        [value]="fields.last_name.value"
+        (input)="onTextChange('last_name', $event)"
+        (focusout)="fields.last_name.isTouched = true"
+      />
+    </mat-form-field>
+    <mat-error *ngFor="let error of fields.last_name.isTouched ? fields.last_name.errors : []">
+      {{ error }}
+    </mat-error>
+    <br />
+    <mat-form-field *ngIf="!!fields.country.options" class="mt-6 w-full">
+      <mat-label>Countries</mat-label>
+      <mat-select required (focusout)="fields.country.isTouched = true">
+        <mat-option
+          (click)="onSelect(country)"
+          *ngFor="let country of fields.country.options"
+          [value]="country.Iso3"
+        >
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error *ngFor="let error of fields.country.isTouched ? fields.country.errors : []">
+      {{ error }}
+    </mat-error>
+  </div>
+
+  <div [style]="{ display: currentStepIndex === 1 ? 'block' : 'none' }">
+    <mat-radio-group (input)="fields.has_children.value = !fields.has_children.value">
+      <mat-label class="block mt-6">Do you drive a children?</mat-label>
+      <mat-radio-button [checked]="fields.has_children.value" [value]="true">Yes</mat-radio-button>
+      <mat-radio-button [checked]="!fields.has_children.value" [value]="true">No</mat-radio-button>
+    </mat-radio-group>
+    <br />
+    <mat-label class="block mt-6">Please choose your hobbies</mat-label>
+    <mat-checkbox
+      class="w-full"
+      (change)="onHobby(hobby, $event.checked)"
+      *ngFor="let hobby of fields.hobbies.options"
+      >{{ hobby }}</mat-checkbox
+    >
+  </div>
+  <!--page 3-->
+  <div [style]="{ display: currentStepIndex === 2 ? 'block' : 'none' }">
+    <mat-label class="block mt-6">Do you drive a car?</mat-label>
+    <mat-radio-group (input)="updateCar()">
+      <mat-radio-button [checked]="fields.drives_car.value" [value]="true">Yes</mat-radio-button>
+      <mat-radio-button [checked]="!fields.drives_car.value" [value]="true">No</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field *ngIf="fields.drives_car.value" class="mt-6">
+      <mat-label>Driving years</mat-label>
+      <input
+        type="number"
+        [value]="fields.driving_years.value"
+        (input)="onTextChange('driving_years', $event)"
+        (focusout)="fields.driving_years.isTouched = true"
+        matInput
+        placeholder="12"
+        required
+      />
+    </mat-form-field>
+    <mat-error
+      *ngFor="let error of fields.driving_years.isTouched ? fields.driving_years.errors : []"
+    >
+      {{ error }}
+    </mat-error>
+  </div>
+
+  <div class="mt-6 flex justify-between align-bottom">
+    <button
+      mat-stroked-button
+      [style]="{ display: currentStepIndex > 0 ? 'block' : 'none' }"
+      (click)="currentStepIndex = currentStepIndex - 1"
+    >
+      Back
+    </button>
+    <button
+      mat-stroked-button
+      [style]="{ display: steps.length - 1 === currentStepIndex ? 'block' : 'none' }"
+      [disabled]="!steps[steps.length - 1].isValid"
+      (click)="postData()"
+    >
+      Submit
+    </button>
+    <button
+      mat-stroked-button
+      class="ml-auto"
+      [style]="{ display: currentStepIndex < steps.length - 1 ? 'block' : 'none' }"
+      [disabled]="!steps[currentStepIndex].isValid"
+      (click)="currentStepIndex = currentStepIndex + 1"
+    >
+      next
+    </button>
+  </div>
+</div>

@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    @apply h-screen p-6 pt-[70px]
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+#forms {
+    display: grid;
+    grid-gap: 40px;
+    grid-row-gap: 80px;
+    grid-template-columns: repeat( auto-fit, max(300px) );
+    justify-content: center;
+}
+.card {
+    @apply h-full w-full rounded-lg shadow-2xl px-4 py-6 bg-white
+}
+
+.title {
+    @apply text-center text-xl font-bold text-blue-500 hover:text-blue-600 transform hover:scale-105 transition-all duration-300
+}
+
+.label {
+    @apply block w-full mt-5 mb-1 text-gray-500
+}
+
+.error {
+    @apply text-red-700 text-xs mt-1 ml-5 hidden
+}
+
+.input-text {
+    @apply p-4 border border-gray-300 rounded-md text-base text-gray-700 w-full
+}
+
+.input-text:focus {
+    @apply outline-none border-blue-500 shadow-xl
+}
+
+.select {
+    @apply w-full p-4 border border-gray-300 rounded-md text-base text-gray-700 bg-white hidden
+}
+
+.select:focus {
+    @apply outline-none border-blue-500 shadow-xl
+}
+
+
+input[type="radio"] {
+    @apply hidden
+}
+
+input[type="radio"] + label {
+    @apply relative pl-6 cursor-pointer
+}
+
+input[type="radio"] + label:before {
+    content: "";
+    @apply absolute top-1/2 left-0 -translate-y-1/2 w-4 h-4 border-2 border-gray-300 rounded-full
+}
+
+/* Style the custom radio button when selected */
+input[type="radio"]:checked + label:before {
+    @apply bg-blue-500 border-blue-500
+}
+
+/* Style the label text */
+input[type="radio"] + label {
+    @apply mr-4 text-base text-gray-700
+}
+
+
+/* Hide the default checkbox */
+input[type="checkbox"] {
+    @apply hidden
+}
+
+/* Style the custom checkbox */
+input[type="checkbox"] + label {
+    @apply inline-block relative pl-6 cursor-pointer
+}
+
+input[type="checkbox"] + label:before {
+    content: "";
+    @apply absolute top-1/2 left-0 -translate-y-1/2 w-4 h-4 border-2 border-gray-300 bg-white rounded-[3px]
+}
+
+/* Style the custom checkbox when checked */
+input[type="checkbox"]:checked + label:before {
+    @apply bg-blue-500 border-blue-500
+}
+
+/* Style the check mark */
+input[type="checkbox"]:checked + label:after {
+    content: "\2713";
+    @apply absolute top-1/2 left-[3px] -translate-y-1/2 text-white text-xs
+}
+
+/* Style the label text */
+input[type="checkbox"] + label {
+    @apply mr-4 text-gray-700 block
+}
+
+
+.loader-line {
+    width: 100%;
+    height: 3px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ddd;
+    margin: 10px auto;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.loader-line:before {
+    content: "";
+    position: absolute;
+    left: -50%;
+    height: 3px;
+    width: 40%;
+    background-color: coral;
+    -webkit-animation: lineAnim 1s linear infinite;
+    -moz-animation: lineAnim 1s linear infinite;
+    animation: lineAnim 1s linear infinite;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+@keyframes lineAnim {
+    0% {
+        left: -40%;
+    }
+    50% {
+        left: 20%;
+        width: 80%;
+    }
+    100% {
+        left: 100%;
+        width: 100%;
+    }
+}
+
+.button-container {
+    @apply flex justify-between py-3 w-full max-w-xs
+}
+
+.btn-back {
+    @apply hidden px-4 py-2 bg-gray-500 text-white font-semibold rounded-md shadow hover:bg-gray-600 transform hover:scale-105 transition-all duration-300
+}
+.btn-next {
+    @apply ml-auto px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50
+}
+.btn-submit {
+    @apply hidden px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow disabled:cursor-not-allowed disabled:opacity-50
+}
+#btn_add_form {
+    @apply fixed top-[10px] right-[10px] px-4 py-2 bg-blue-500 text-white font-semibold rounded-md shadow hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50
+}
