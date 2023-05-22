@@ -53,7 +53,7 @@ export default class WizardForm {
     }
 
     init() {
-        this.steps = {...steps}
+        this.steps = JSON.parse(JSON.stringify(steps))
         this.fields = {
             first_name: this.steps[0].fields.first_name,
             last_name: this.steps[0].fields.last_name,
