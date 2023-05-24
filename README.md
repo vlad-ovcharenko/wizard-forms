@@ -1,7 +1,6 @@
 general notes:
 * I have used validation functions for each field to provide flexibility. For example, the "has_children" field currently has a simple validator `() => true`. This may seem unnecessary now, but it allows for future changes. In certain cases, there might be requirements where the user must have at least one hobby or other conditions.
 * I have utilized custom Tailwind styles only for the JavaScript version to save time. This approach helped expedite the development process.
-* The entire task, including project setup, host setup, exploring Angular, and making fixes, took me approximately 25 hours to complete. I undertook this effort for your company voluntarily and within a limited time frame. Therefore, please understand that there may be some imperfections or areas that require further refinement due to time constraints.
 
 [angular version](https://ng-wizard-form.surge.sh/)
 
